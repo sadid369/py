@@ -241,41 +241,94 @@
 #      print(num)
 
 #Password Generator Project
-import random
-letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
+# import random
+# letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+# numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+# symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
 
-print("Welcome to the PyPassword Generator!")
-nr_letters= int(input("How many letters would you like in your password?\n")) 
-nr_symbols = int(input(f"How many symbols would you like?\n"))
-nr_numbers = int(input(f"How many numbers would you like?\n"))
+# print("Welcome to the PyPassword Generator!")
+# nr_letters= int(input("How many letters would you like in your password?\n")) 
+# nr_symbols = int(input(f"How many symbols would you like?\n"))
+# nr_numbers = int(input(f"How many numbers would you like?\n"))
 
-#Eazy Level - Order not randomised:
-#e.g. 4 letter, 2 symbol, 2 number = JduE&!91
-password = ""
-for char in range(1, nr_letters +1):
-  random_letter = random.choice(letters)
-  password += random_letter
-  # print(password)
-for char in range(1, nr_symbols +1):
-  random_symbols = random.choice(symbols)
-  password += random_symbols
-  # print(password)
-for char in range(1, nr_numbers +1):
-  random_number = random.choice(numbers)
-  password += random_number
-  # print(password)
-random_password = []
-for char in range(0, (nr_letters+nr_symbols+nr_numbers)):
-  random_password.append(password[char])
-print(random_password)
-shuffleList = random.shuffle(random_password)
-finalPass = ""
-for char in random_password:
-  finalPass += char
-print(finalPass)
+# #Eazy Level - Order not randomised:
+# #e.g. 4 letter, 2 symbol, 2 number = JduE&!91
+# password = ""
+# for char in range(1, nr_letters +1):
+#   random_letter = random.choice(letters)
+#   password += random_letter
+#   # print(password)
+# for char in range(1, nr_symbols +1):
+#   random_symbols = random.choice(symbols)
+#   password += random_symbols
+#   # print(password)
+# for char in range(1, nr_numbers +1):
+#   random_number = random.choice(numbers)
+#   password += random_number
+#   # print(password)
+# random_password = []
+# for char in range(0, (nr_letters+nr_symbols+nr_numbers)):
+#   random_password.append(password[char])
+# print(random_password)
+# shuffleList = random.shuffle(random_password)
+# finalPass = ""
+# for char in random_password:
+#   finalPass += char
+# print(finalPass)
  
 
-#Hard Level - Order of characters randomised:
-#e.g. 4 letter, 2 symbol, 2 number4 = g^2jk8&P2
+# #Hard Level - Order of characters randomised:
+# #e.g. 4 letter, 2 symbol, 2 number4 = g^2jk8&P2
+
+#Step 1 
+# import random
+
+# word_list = ["aardvark", "baboon", "camel"]
+
+#TODO-1 - Randomly choose a word from the word_list and assign it to a variable called chosen_word.
+# chosen_word = random.choice(word_list)
+
+#TODO-2 - Ask the user to guess a letter and assign their answer to a variable called guess. Make guess lowercase.
+# guess = input("Guess a word ").lower()
+
+# #TODO-3 - Check if the letter the user guessed (guess) is one of the letters in the chosen_word.
+# # chosenWordList = []
+# # for char in range(0, len(chosen_word)):
+# #     chosenWordList.append(chosen_word[char])
+# for letter in chosen_word:
+#   if guess == letter:
+#     print("Right")
+#   else:
+#     print("wrong")
+# print(chosen_word)
+import random
+from re import A
+word_list = ["aardvark", "baboon", "camel"]
+chosen_word = random.choice(word_list)
+
+#Testing code
+print(f'Pssst, the solution is {chosen_word}.')
+
+#TODO-1: - Create an empty List called display.
+#For each letter in the chosen_word, add a "_" to 'display'.
+#So if the chosen_word was "apple", display should be ["_", "_", "_", "_", "_"] with 5 "_" representing each letter to guess.
+display = []
+word_length = len(chosen_word)
+for _ in range(word_length):
+  display += "_"
+no_more_dash = True 
+while no_more_dash:
+   guess = input("Guess a letter: ").lower()
+
+   
+
+   for position in range(word_length):
+         letter = chosen_word[position]
+         if letter == guess:
+          display[position] = letter
+   print(display)
+   if "_" not in display:
+            no_more_dash = False
+            print("you won")
+    #TODO-3: - Print 'display' and you should see the guessed letter in the correct position and every other letter replace with "_".
+#Hint - Don't worry about getting the user to guess the next letter. We'll tackle that in step 3.
