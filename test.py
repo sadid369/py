@@ -301,13 +301,17 @@
 #   else:
 #     print("wrong")
 # print(chosen_word)
-import random
-from re import A
-word_list = ["aardvark", "baboon", "camel"]
+import random 
+from hangman_words import word_list
+from hangman_art import logo , stages
+
+
+# word_list = ["aardvark", "baboon", "camel"]
 chosen_word = random.choice(word_list)
 
-#Testing code
+print(f'Pssst, the solution is {logo}.')
 print(f'Pssst, the solution is {chosen_word}.')
+#Testing code
 
 #TODO-1: - Create an empty List called display.
 #For each letter in the chosen_word, add a "_" to 'display'.
@@ -316,8 +320,10 @@ display = []
 word_length = len(chosen_word)
 for _ in range(word_length):
   display += "_"
-no_more_dash = True 
-while no_more_dash:
+
+lives = 6
+end_of_game = True 
+while end_of_game:
    guess = input("Guess a letter: ").lower()
 
    
@@ -328,7 +334,13 @@ while no_more_dash:
           display[position] = letter
    print(display)
    if "_" not in display:
-            no_more_dash = False
+            end_of_game = False
             print("you won")
+   elif guess not in display:
+     print(stages[lives])
+     lives -= 1
+     if lives <0 :
+       end_of_game = False
+       print("you lose")
     #TODO-3: - Print 'display' and you should see the guessed letter in the correct position and every other letter replace with "_".
 #Hint - Don't worry about getting the user to guess the next letter. We'll tackle that in step 3.
