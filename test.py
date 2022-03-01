@@ -351,6 +351,37 @@
 #   print("Some things")
 # greet()
 
-def greet_by_name(name):
-  print(f"Hello {name}")
-greet_by_name("sadid")
+# def greet_by_name(name):
+#   print(f"Hello {name}")
+# greet_by_name("sadid")
+# import math
+# test_h = int(input("Height of wall: "))
+# test_w = int(input("Width of wall: "))
+# coverage = 5
+
+# def paint_calc(height, width, cover):
+#     number_of_can =math.ceil( (height * width) / cover)
+#     print(f"You will need  {number_of_can} of paint")
+# paint_calc(height=test_h, width=test_w, cover=coverage)
+
+n = int(input("input a number "))
+
+def prime_checker(number  ):
+  is_prime = True
+  for i in range(2, number):
+    if  number%i ==0 :
+      is_prime = False
+  if is_prime:
+      print('Its a prime number')
+  else:
+      print("It's not a prime number")
+prime_checker(number=n)
+
+
+
+
+
+
+
+
+
